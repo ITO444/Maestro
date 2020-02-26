@@ -1,1 +1,3 @@
-HTML, CSS, JS web app for Prometheus.
+# Prometheus
+
+HTML, CSS, JS web app with JQuery.
