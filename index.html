@@ -32,11 +32,14 @@
 	      navigator.mediaDevices.getUserMedia({ video: true })
 	        .then(function (stream) {
 	          video.srcObject = stream;
+		  posenet.load().then(function(net) {
+                  });
 	        })
 	        .catch(function (err0r) {
 	          console.log("Something went wrong!");
 	        });
 	    }
+	    
         </script>
     </body>
 </html>
