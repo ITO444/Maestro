@@ -1,27 +1,42 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <!-- Load TensorFlow.js -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
-    <!-- Load Posenet -->
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/posenet"></script>
- </head>
+<head>
+<meta charset="utf-8">
+<title>Display Webcam Stream</title>
+ 
+<style>
+#container {
+	margin: 0px auto;
+	width: 500px;
+	height: 375px;
+	border: 10px #333 solid;
+}
+#videoElement {
+	width: 500px;
+	height: 375px;
+	background-color: #666;
+}
+</style>
+</head>
+ 
+<body>
+<div id="container">
+	<video autoplay="true" id="videoElement">
+	
+	</video>
+</div>
+<script>
+  var video = document.querySelector("#videoElement");
 
-  <body>
-    <img id="cat" src="./images/cat.jpg"/>
-  </body>
-  <!-- Place your code in the script tag below. You can also use an external .js file -->
-  <script>
-    var flipHorizontal = false;
-
-    var imageElement = document.getElementById("cat");
-
-    posenet.load().then(function(net) {
-      const pose = net.estimateSinglePose(imageElement, {
-        flipHorizontal: true
+  if (navigator.mediaDevices.getUserMedia) {
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(function (stream) {
+        video.srcObject = stream;
+      })
+      .catch(function (err0r) {
+        console.log("Something went wrong!");
       });
-      return pose;
-    }).then(function(pose){
-      console.log(pose);
-    })
-  </script>
+  }
+</script>
+</body>
 </html>
